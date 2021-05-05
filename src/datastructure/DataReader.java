@@ -1,5 +1,11 @@
 package datastructure;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.nio.Buffer;
+
 public class DataReader {
 
     public static void main(String[] args) {
@@ -20,6 +26,26 @@ public class DataReader {
 
         String textFile = System.getProperty("user.dir") + "/src/data/self-driving-car.txt";
 
+        String tempContainer;
+        String finalContainer="";
+
+        try {
+            FileReader fileReader = new FileReader("src/data/self-driving-car");
+            BufferedReader bufferedReader = new BufferedReader(fileReader);
+
+            while((tempContainer=bufferedReader.readLine())!=null){
+                finalContainer=finalContainer+"\n"+tempContainer;
+
+            }
+
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        System.out.println(finalContainer);
     }
 
 }

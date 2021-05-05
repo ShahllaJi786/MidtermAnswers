@@ -1,29 +1,97 @@
 Please answer the below Data Structure Questions:
 
 why do we need data structure?
-Ans :
+Ans : We need data structure because it stores data in an organized, efficient manner.
 
 What are the various operations that can be performed on different Data Structures?
+Ans: Creation, insertion, deletion, searching, sorting, traversing, merging, appending and updating.
+
 List out the areas in which data structures are applied extensively?
+Ans: Compiler design, operating system, DBMS, graphics, simulation, numerical analysis, artificial intelligence
+
 what is an Array?
+Ans:  An array is a container that stores a fixed number of values in a single variable, instead of declaring separate variables for each value.
+
 what is the difference between the Array and ArrayList?
+Ans: An array has a fixed number of values inside of it's variable.  The values in an array list can be changed.  An array is a basic functionality
+provided by Java and array list is a class of Java Collections framework.
+
 what is LinkedList?
+A linked list is an ordered collection of elements of the same type that are connected to each other using pointers.
+
 How is an Array different from Linked List?
+Ans:  An array is used to store data of similiar type.  A linked list is an ordered collection of elements of the same type that are
+connected to each other using pointers.
+It is easier to delete and insert in a linked list.  If we want to delete a number in an array, we have to delete all the numbers after
+the number we want deleted as well.
+
 what is queue?
+Ans : Queue is an interface.  To use queue, you can use classes like linked list, array deque, priority queue. A queue works like a
+line at a supermarket.  When a value is inserted at the end, a value is removed from the beginning of the queue.  This is the first in, first
+out approach.
+
 what is stack?
+Ans: A stack is a linear list of data that is used to store a collection of objects. The two main operations for stack
+are push and pop.  Push adds an element at the very top of the stack and push removes the most recently added element.
+It uses the last in, first out approach.
+
 what is FIFO and LIFO?
+Ans: FIFO is first in, first out.  When a value is inserted at the end, a value is removed from the beginning of the queue.
+LIFO is last in, first out.  The most recent data stored is the first to come out.
+
 what is the order of complexity?
+Ans:
+
 what is the best case to search an element from an array?
+Ans:
+
 what is the worst case to search an element from an array?
+Ans:
+
 what is tree in data structure?
+Ans: A tree is a non-linear, hierarchical data structure. Each tree has a root and roots may or may not have nodes.  The nodes will
+connected to the root by edges.  Each node contains a value or data. A child node cannot have two parent nodes.
+
 what is graph in data structure?
+Ans: A graph is a non-linear data structure.  The data in a graph is stored in edges and nodes which are interconnected.
+
 what is the difference between the HashTable and HashMap?
+Ans: HashTable is thread safe and sychronized. HashMap is not thread safe and non-synchronized. HashTable is fast and HashMap
+is slow.
+
 What are the major data structures used in the following areas : RDBMS, Network data model and Hierarchical data model.
+Ans: RDBMS - Array
+Network Data Model - Graph
+Hierarchical Data Model - Tree
+
 How HashMap works in java?
+Ans: HashMap stores data based on a key-value structure.  It uses the hash function to map keys to their associated values.
+
 What is ArrayIndexOutOfBoundsException in java? When it occurs?
+Ans: This exception Java throws when data does not exist in the array.
+
 What are the different ways of copying an array into another array?
+Ans: You can manually copy elements by using loop, create a clone of the array, use Arrays.copyOf() method or System.arrayCopy().
+
 What is difference between an array and a linked list?
+Ans:  An array is used to store data of similiar type.  A linked list is an ordered collection of elements of the same type that are
+connected to each other using pointers.
+It is easier to delete and insert in a linked list.  If we want to delete a number in an array, we have to delete all the numbers after
+the number we want deleted as well.
+
 What is DFS and BFS?
+Ans: BFS stands for Breadth First Search. Breadth First Search uses Queue data structure for finding the shortest path.
+DFS stands for Depth First Search.  Depth First Search uses Stack data structure.
+
 What is Recursion?
+Ans: Recursion is a technique of making a function call itself.
+
 What are linear and non linear data Structures?
+Ans: In linear data structures, elements are arranged to connect with one another in a linear order.  The element attaches to
+it's previous element and it's next element.  In non-linear data structures, the elements are attached in a hierarchical manner and
+are present at various levels.
+
 What is Big-(O)-notation?
+Ans: How time scaled with respect to some input variables.  Measuring the time and space complexity of an algorithm in terms of
+the growth of input size n.
+

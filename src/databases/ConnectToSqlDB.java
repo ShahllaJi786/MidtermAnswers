@@ -1,5 +1,6 @@
 package databases;
 
+import math.problems.LowestNumber;
 import parser.xml.Student;
 
 import java.io.FileInputStream;
@@ -17,6 +18,7 @@ public class ConnectToSqlDB {
     public static PreparedStatement ps = null;
     public static ResultSet resultSet = null;
 
+
     public static Properties loadProperties() throws IOException {
         Properties prop = new Properties();
         InputStream ism = new FileInputStream("src/secret.properties");
@@ -31,10 +33,13 @@ public class ConnectToSqlDB {
         String url = prop.getProperty("MYSQLJDBC.url");
         String userName = prop.getProperty("MYSQLJDBC.userName");
         String password = prop.getProperty("MYSQLJDBC.password");
+        String query = "select * from students;";
         Class.forName(driverClass);
-        connect = DriverManager.getConnection(url, userName, password);
+        Connection connection = DriverManager.getConnection(url, userName, password);
+        // Statement statement = connection.createStatement();
+       // ResultSet rs = statement.executeQuery(query);
         System.out.println("Database is connected");
-        return connect;
+        return connection;
     }
 
     public static List<User> readUserProfileFromSqlTable() {
@@ -42,7 +47,7 @@ public class ConnectToSqlDB {
         User user = null;
         try {
             Connection conn = connectToSqlDatabase();
-            String query = "SELECT * FROM Students";
+            String query = "SELECT * FROM Students;";
             // create the java statement
             Statement st = conn.createStatement();
             // execute the query, and get a java resultset
@@ -58,6 +63,7 @@ public class ConnectToSqlDB {
 
             }
             st.close();
+            conn.close();
         } catch (Exception e) {
             System.err.println("Got an exception! ");
             System.err.println(e.getMessage());
@@ -113,16 +119,16 @@ public class ConnectToSqlDB {
         return dataList;
     }
 
-    public void insertDataFromArrayToSqlTable(int[] ArrayData, String tableName, String columnName) {
+    public void insertDataFromArrayToSqlTable(int[] ArrayData, String array, String lowestnumber) {
         try {
             connectToSqlDatabase();
-            ps = connect.prepareStatement("DROP TABLE IF EXISTS `" + tableName + "`;");
+            ps = connect.prepareStatement("DROP TABLE IF EXISTS `" + array + "`;");
             ps.executeUpdate();
             ps = connect.prepareStatement(
-                    "CREATE TABLE `" + tableName + "` (`ID` int(11) NOT NULL AUTO_INCREMENT,`SortingNumbers` bigint(20) DEFAULT NULL,  PRIMARY KEY (`ID`) );");
+                    "CREATE TABLE `" + array + "` (`ID` int(11) NOT NULL AUTO_INCREMENT,`SortingNumbers` bigint(20) DEFAULT NULL,  PRIMARY KEY (`ID`) );");
             ps.executeUpdate();
             for (int n = 0; n < ArrayData.length; n++) {
-                ps = connect.prepareStatement("INSERT INTO " + tableName + " ( " + columnName + " ) VALUES(?)");
+                ps = connect.prepareStatement("INSERT INTO " + array + " ( " + lowestnumber + " ) VALUES(?)");
                 ps.setInt(1, ArrayData[n]);
                 ps.executeUpdate();
             }
