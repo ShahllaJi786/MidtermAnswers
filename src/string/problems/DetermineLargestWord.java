@@ -1,5 +1,7 @@
 package string.problems;
 
+import com.sun.org.apache.xpath.internal.objects.XRTreeFragSelectWrapper;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -14,7 +16,15 @@ public class DetermineLargestWord {
         Map<Integer, String> wordNLength = findTheLargestWord(s);
         //implement
 
-        System.out.println(s);
+        String[] word = s.split(" ");
+        String longword = " ";
+        for (int i = 0; i < word.length; i++)
+            for (int j = 2 + i; j < word.length; j++)
+                if (word[i].length() >= word[j].length())
+                    longword = word[i];
+
+        System.out.println(longword.length()+" "+longword);
+
 
     }
 
@@ -25,4 +35,4 @@ public class DetermineLargestWord {
 
         return map;
     }
-}
+    }

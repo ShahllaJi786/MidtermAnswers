@@ -46,6 +46,7 @@ public class LowestNumber {
         for (String st : lowestValue) {
             System.out.println(st);
         }
+
     }
 
 }
