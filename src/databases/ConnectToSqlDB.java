@@ -1,6 +1,5 @@
 package databases;
 
-import math.problems.LowestNumber;
 import parser.xml.Student;
 
 import java.io.FileInputStream;
@@ -37,7 +36,7 @@ public class ConnectToSqlDB {
         Class.forName(driverClass);
         Connection connection = DriverManager.getConnection(url, userName, password);
         // Statement statement = connection.createStatement();
-       // ResultSet rs = statement.executeQuery(query);
+        // ResultSet rs = statement.executeQuery(query);
         System.out.println("Database is connected");
         return connection;
     }
@@ -119,18 +118,22 @@ public class ConnectToSqlDB {
         return dataList;
     }
 
-    public void insertDataFromArrayToSqlTable(int[] ArrayData, String array, String lowestnumber) {
+    public void insertDataFromArrayToSqlTable(int[] ArrayData, String tableName, String columnName) throws IOException {
         try {
             connectToSqlDatabase();
-            ps = connect.prepareStatement("DROP TABLE IF EXISTS `" + array + "`;");
+            ps = connect.prepareStatement("DROP TABLE IF EXISTS `" + tableName + "`;");
             ps.executeUpdate();
             ps = connect.prepareStatement(
-                    "CREATE TABLE `" + array + "` (`ID` int(11) NOT NULL AUTO_INCREMENT,`SortingNumbers` bigint(20) DEFAULT NULL,  PRIMARY KEY (`ID`) );");
+                    "CREATE TABLE `" + tableName + "` (`ID` int(11) NOT NULL AUTO_INCREMENT,`SortingNumbers` bigint(20) DEFAULT NULL,  PRIMARY KEY (`ID`) );");
             ps.executeUpdate();
             for (int n = 0; n < ArrayData.length; n++) {
-                ps = connect.prepareStatement("INSERT INTO " + array + " ( " + lowestnumber + " ) VALUES(?)");
+                ps = connect.prepareStatement("INSERT INTO " + tableName + " ( " + columnName + " ) VALUES(?)");
                 ps.setInt(1, ArrayData[n]);
                 ps.executeUpdate();
+            }
+            int status = ps.executeUpdate();
+            if (status !=0) {
+                System.out.println("Record Created");
             }
 
         } catch (IOException e) {
@@ -173,7 +176,7 @@ public class ConnectToSqlDB {
         return data;
     }
 
-    public void insertDataFromArrayListToSqlTable(List<Student> list, String tableName, String columnName) {
+    public void insertDataFromArrayListToSqlTable(List<Student> list, String tableName, String columnName) throws SQLException {
         try {
             connectToSqlDatabase();
             ps = connect.prepareStatement("DROP TABLE IF EXISTS `" + tableName + "`;");
@@ -194,6 +197,10 @@ public class ConnectToSqlDB {
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
+
+        ResultSet resultSet = statement.executeQuery("select * from array;");
+        while (resultSet.next()) {
+            System.out.println(resultSet.getString("lowestnumber"));}
     }
 
     public void insertProfileToSqlTable(String tableName, String columnName1, String columnName2) {
